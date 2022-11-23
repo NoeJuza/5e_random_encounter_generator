@@ -1,0 +1,24 @@
+{
+  "name": "random-encounter-generator",
+  "version": "1.0.0",
+  "description": "Generate random encounters for dnd 5e",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [
+    "dnd",
+    "5e",
+    "generator",
+    "5e",
+    "random",
+    "encounter",
+    "random",
+    "encounter"
+  ],
+  "author": "NoeJuza",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^19.3.0"
+  }
+}
