@@ -1,6 +1,7 @@
 #R.E.G.
 
 Landscapes:
+0 - Any
 1 - Arctic
 2 - Coastal
 3 - Desert
