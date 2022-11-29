@@ -3,8 +3,9 @@ import xp_values from "./xp_values.json"
 import mobs from "./mobs_with_envs_without_Legacy.json"
 import crtable from "./cr.json";
 import styled from "@emotion/styled";
-import { Button, InputBase, List, ListItem, ListItemText, NativeSelect } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Button, InputBase, NativeSelect } from "@mui/material";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const BootstrapInput = styled(InputBase)(() => ({
     '& .MuiInputBase-input': {
@@ -38,7 +39,9 @@ function Calculator() {
     const [land, setLand] = useState(0);
     const [minMobs, setMinMobs] = useState(1);
     const [maxMobs, setMaxMobs] = useState(15);
+    const [encounterTableList, setEncounterTableList] = useState([])
     const [encounterTable, setEncounterTable] = useState(<></>)
+
     const handleCharCount = (e) =>{
         setCharCount(e.target.value)
         let list = []
@@ -94,7 +97,8 @@ function Calculator() {
         let rXP = maxXP
         let mobsOut = []
         while(rXP>=10){
-            let filtered = mobs.filter(x=> ((crtable.find(el=> el.cr === x.cr))?.xp) <= rXP  )
+            let copyRxp = rXP
+            let filtered = mobs.filter(x=> ((crtable.find(el=> el.cr === x.cr))?.xp) <= copyRxp  )
             let biomeFiltered
             if (land === 0) {
                 biomeFiltered = filtered
@@ -114,10 +118,13 @@ function Calculator() {
             }
         }
         console.log(mobsOut)
+        setEncounterTableList([...mobsOut])
+    }
+    useEffect(()=>{
         setEncounterTable(
             <ul>
                 {
-                    mobsOut.map(el=>
+                    encounterTableList.map(el=>
                         <li key={el.name}>
                             {el.name}
                         </li>
@@ -125,8 +132,7 @@ function Calculator() {
                 }
             </ul>
         )
-    }
-
+    },[encounterTableList])
     return (
         <>
             <div className="form-inputs">
