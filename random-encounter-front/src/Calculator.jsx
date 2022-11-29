@@ -95,6 +95,7 @@ function Calculator() {
         });
         console.log(maxXP,minMobs,maxMobs)
         let rXP = maxXP
+        setEncounterTableList([])
         let mobsOut = []
         while(rXP>=10){
             let copyRxp = rXP
